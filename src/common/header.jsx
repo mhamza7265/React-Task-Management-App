@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { EditDisplayType } from "../reducers/TaskFilterReducer";
 import DatePicker from "react-datepicker";
 import { useState } from "react";
+import { AddDate } from "../reducers/DateFilterReducer";
 
 function Header() {
   const [date, setDate] = useState(new Date());
@@ -41,7 +42,8 @@ function Header() {
     let dy = d.getDate();
 
     const duedate = dy + "/" + mon + "/" + y;
-    dispatch(EditDisplayType({ date: duedate, type: "date" }));
+    dispatch(EditDisplayType("date"));
+    dispatch(AddDate(duedate));
   };
 
   console.log(location.pathname);

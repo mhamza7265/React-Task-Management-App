@@ -1,18 +1,35 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { isLoggedIn, isLoggedOut } from "../../reducers/loginReducer";
+import { useDispatch } from "react-redux";
+import { useToast } from "@chakra-ui/react";
+import { isLoggedIn } from "../../reducers/loginReducer";
 import { loggedInUser } from "../../reducers/LoggedInReducer";
+import { BarLoader } from "react-spinners";
+import axios from "axios";
 
 const Loginform = () => {
-  const [inputs, setInputs] = useState({});
-  const [passError, setPassError] = useState(false);
-  const [userNameError, setUserNameError] = useState(false);
+  // const [inputs, setInputs] = useState({});
+  // const [passError, setPassError] = useState(false);
+  let [loading, setLoading] = useState(false);
+  // const [userNameError, setUserNameError] = useState(false);
 
-  const usersdata = useSelector((state) => state.userdata.users);
+  const toast = useToast();
+
+  // const usersdata = useSelector((state) => state.userdata.users);
 
   const dispatch = useDispatch();
+
+  const override = {
+    display: "block",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    margin: "0 auto",
+    borderColor: "red",
+    width: "100%",
+    backgroundColor: "#4b6262",
+  };
 
   const {
     register,
@@ -20,41 +37,93 @@ const Loginform = () => {
     formState: { errors },
   } = useForm();
 
-  const handleChange = (event) => {
-    const name = event.target.getAttribute("data");
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
-    setPassError(false);
-    setUserNameError(false);
-    console.log(inputs);
-  };
-
   var nav = useNavigate();
 
-  const onSubmit = () => {
-    const userData = usersdata.find((user) => user.email === inputs.email);
-    console.log(userData);
-    if (userData && userData.password === inputs.password) {
-      dispatch(isLoggedIn());
-      dispatch(
-        loggedInUser({
-          username: userData.firstname + " " + userData.lastname,
-          userkey: userData.userkey,
-        })
-      );
-      nav("/");
-    } else if (userData && userData.password !== inputs.password) {
-      dispatch(isLoggedOut());
-      setPassError(true);
-    } else {
-      dispatch(isLoggedOut());
-      setUserNameError(true);
-    }
-    userData.password === inputs.password && nav("/");
+  const onSubmit = (data) => {
+    console.log(data);
+    const obj = { ...data, device_token: "gvhvfcfcxasdkjbhasvyhuvchvuhvbjbj" };
+    console.log(obj);
+    setLoading(true);
+    axios
+      .post("https://partytonight.bitwork.tech/public/api/login", obj)
+      .then((response) => {
+        setLoading(false);
+        console.log(response.data);
+        if (response.data.code == 1005) {
+          toast({
+            title: response.data.message,
+            position: "top",
+            isClosable: true,
+            duration: 1000,
+            status: "error",
+          });
+        } else if (response.data.status == true) {
+          toast({
+            title: response.data.message,
+            position: "top",
+            isClosable: true,
+            duration: 1000,
+            status: "success",
+          });
+          dispatch(
+            isLoggedIn({ access_token: response.data.user.access_token })
+          );
+          localStorage.setItem("access_token", response.data.user.access_token);
+          localStorage.setItem("user", JSON.stringify(response.data.user.name));
+          dispatch(
+            loggedInUser({
+              username: response.data.user.name,
+              userkey: response.data.user.email,
+            })
+          );
+          setTimeout(() => nav("/"), 1000);
+        }
+      })
+      .catch((error) => {
+        error.message == "Request failed with status code 401" &&
+          toast({
+            title: "Wrong password.",
+            position: "top",
+            isClosable: true,
+            duration: 1000,
+            status: "error",
+          });
+      });
+
+    // const userData = usersdata.find((user) => user.email === inputs.email);
+    // console.log(userData);
+    // if (userData && userData.password === inputs.password) {
+    //   dispatch(isLoggedIn());
+    //   dispatch(
+    //     loggedInUser({
+    //       username: userData.firstname + " " + userData.lastname,
+    //       userkey: userData.userkey,
+    //     })
+    //   );
+    //   nav("/");
+    // } else if (userData && userData.password !== inputs.password) {
+    //   dispatch(isLoggedOut());
+    //   setPassError(true);
+    // } else {
+    //   dispatch(isLoggedOut());
+    //   setUserNameError(true);
+    // }
+    // userData.password === inputs.password && nav("/");
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="login-form position-relative"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <BarLoader
+        color={"#ffffff"}
+        loading={loading}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
       <div className="d-flex align-items-center my-4">
         <h1 className="text-center fw-normal mb-0 me-3">Sign In</h1>
       </div>
@@ -74,12 +143,10 @@ const Loginform = () => {
           type="text"
           data="email"
           placeholder="Enter your email"
-          onChange={handleChange}
           id="form3Example3"
           className="form-control form-control-lg"
         />
-        <p>{errors.username?.message}</p>
-        {userNameError && <p className="text-danger">Username is wrong</p>}
+        <p>{errors.email?.message}</p>
       </div>
 
       {/* <!-- Password input --> */}
@@ -92,12 +159,10 @@ const Loginform = () => {
           type="password"
           data="password"
           placeholder="Enter your password"
-          onChange={handleChange}
           id="form3Example4"
           className="form-control form-control-lg"
         />
         <p>{errors.password?.message}</p>
-        {passError && <p className="text-danger">Password is wrong</p>}
       </div>
 
       <div className="d-flex justify-content-between align-items-center">

@@ -12,6 +12,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import CompletedTaskReducer from "../reducers/CompletedTaskReducer";
 import TaskFilterReducer from "../reducers/TaskFilterReducer";
+import DateFilterReducer from "../reducers/DateFilterReducer";
 
 const persistConfig = {
   key: "root",
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   loggedin: LoggedInReducer,
   userdata: UsersDataReducer,
   taskfilter: TaskFilterReducer,
+  datefilter: DateFilterReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

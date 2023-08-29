@@ -2,15 +2,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { isLoggedOut } from "../reducers/loginReducer";
 import logo from "../assets/images/logo.png";
+import { useToast } from "@chakra-ui/react";
 
 function TopHeader() {
   const loggedinuser = useSelector((state) => state.loggedin.user);
   // const loggedin = useSelector(state => state.login)
+  const toast = useToast();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleClick = () => {
-    dispatch(isLoggedOut());
+    dispatch(isLoggedOut("access_token", ""));
+    localStorage.setItem("access_token", "");
+    localStorage.setItem("user", "");
     navigate("/login");
   };
 

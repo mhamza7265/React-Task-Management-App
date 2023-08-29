@@ -12,27 +12,28 @@ const Organiser = () => {
   const inprogresstasks = useSelector((state) => state.inprogresstask.data);
   const completedtasks = useSelector((state) => state.completedtask.data);
   const tasksfilter = useSelector((state) => state.taskfilter.value);
+  const datetofilter = useSelector((state) => state.datefilter.value);
   const dispatch = useDispatch();
 
   const newtasksfilterres = newtasks.filter(
     (item) => item.priority == tasksfilter
   );
   const newtasksdatefilterres = newtasks.filter(
-    (item) => item.duedate == tasksfilter.date
+    (item) => item.duedate == datetofilter
   );
   console.log(newtasksfilterres);
   const iptasksfilterres = inprogresstasks.filter(
     (item) => item.priority == tasksfilter
   );
   const iptasksdatefilterres = inprogresstasks.filter(
-    (item) => item.duedate == tasksfilter.date
+    (item) => item.duedate == datetofilter
   );
   console.log(iptasksfilterres);
   const completedtasksfilterres = completedtasks.filter(
     (item) => item.priority == tasksfilter
   );
   const completedtasksdatefilterres = completedtasks.filter(
-    (item) => item.duedate == tasksfilter.date
+    (item) => item.duedate == datetofilter
   );
 
   const handleDragEnd = (result) => {
@@ -87,7 +88,7 @@ const Organiser = () => {
                 tasks={
                   tasksfilter == "all"
                     ? newtasks
-                    : tasksfilter.type == "date"
+                    : tasksfilter == "date"
                     ? newtasksdatefilterres
                     : newtasksfilterres
                 }
@@ -98,7 +99,7 @@ const Organiser = () => {
                 tasks={
                   tasksfilter == "all"
                     ? inprogresstasks
-                    : tasksfilter.type == "date"
+                    : tasksfilter == "date"
                     ? iptasksdatefilterres
                     : iptasksfilterres
                 }
@@ -109,7 +110,7 @@ const Organiser = () => {
                 tasks={
                   tasksfilter == "all"
                     ? completedtasks
-                    : tasksfilter.type == "date"
+                    : tasksfilter == "date"
                     ? completedtasksdatefilterres
                     : completedtasksfilterres
                 }
