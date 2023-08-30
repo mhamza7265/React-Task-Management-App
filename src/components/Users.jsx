@@ -2,9 +2,10 @@ import { useSelector } from "react-redux";
 
 function Users() {
   const usersdata = useSelector((state) => state.userdata.users);
+
   return (
-    <table className="table table-striped m-t-85 table-dark">
-      <thead>
+    <table className="table table-striped m-t-85">
+      <thead className="task-table-head">
         <tr className="text-center">
           <th className="text-center">ID</th>
           <th className="text-center">Name</th>
@@ -12,14 +13,16 @@ function Users() {
           <th className="text-center">Contact No.</th>
         </tr>
       </thead>
-      {usersdata.map((item, key) => (
-        <tr key={key} className="text-dark text-center">
-          <td>{item.id}</td>
-          <td>{item.firstname + "" + item.lastname}</td>
-          <td>{item.designation}</td>
-          <td>{item.contact}</td>
-        </tr>
-      ))}
+      <tbody>
+        {usersdata.map((item, key) => (
+          <tr key={key} className="text-dark text-center">
+            <td>{item.id}</td>
+            <td>{item.name}</td>
+            <td>{item.designation}</td>
+            <td>{item.contact}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }

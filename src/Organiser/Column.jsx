@@ -13,7 +13,7 @@ const Container = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
   padding: 0 10px;
-  border-top: 3px solid #ed9d0b;
+  border-top: 3px solid #4b6262;
   margin: 0 0 30px 0;
 `;
 
@@ -35,7 +35,6 @@ const TaskList = styled.div`
 `;
 
 export default function Column({ title, tasks, id }) {
-  console.log(id);
   return (
     <Container className="column">
       <Title>{title}</Title>

@@ -28,7 +28,6 @@ const TodoStructureComp = ({ task, index }) => {
       .map((item) => item.id)
       .indexOf(Number(parentid));
     dispatch(AddIndex({ ind: index, state: "completedtasks" }));
-    console.log(parentid);
     navigate("/edittask");
   };
 
@@ -47,7 +46,6 @@ const TodoStructureComp = ({ task, index }) => {
     const index = completedtasks
       .map((item) => item.id)
       .indexOf(Number(parentid));
-    console.log(parentid);
     status == true
       ? dispatch(EditTaskStatus({ index: index, data: "Complete" }))
       : dispatch(EditTaskStatus({ index: index, data: "Pending" }));
@@ -67,7 +65,7 @@ const TodoStructureComp = ({ task, index }) => {
               <div className="card-body dash-card-body">
                 <h6 className="card-title">{task.title}</h6>
                 <p className="card-text">{task.desc}</p>
-                <p>Due Date: {task.duedate}</p>
+
                 <div className="w-100">
                   <p
                     className={`card-subtitle mb-2 badge ${
@@ -81,8 +79,15 @@ const TodoStructureComp = ({ task, index }) => {
                     {task.priority}
                   </p>
                 </div>
-                <p>Status: Completed</p>
-                <p>Created on: {task.createdon}</p>
+                <p className="m-0">
+                  <span className="dark">Due Date:</span> {task.duedate}
+                </p>
+                <p className="m-0">
+                  <span className="dark">Status:</span> Completed
+                </p>
+                <p className="m-0">
+                  <span className="dark">Created on:</span> {task.createdon}
+                </p>
                 <div className="pt-2 bt-dash">
                   <a
                     href="javascript:void(0)"

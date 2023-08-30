@@ -5,10 +5,10 @@ const ResetPassword = () => {
   return (
     <>
       <div className="reset-password-section text-center">
-        <h3>
+        <div>
           <i className="fa fa-lock fa-4x"></i>
-        </h3>
-        <h2 className="text-center">Forgot Password?</h2>
+          <h2 className="text-center mt-4">Forgot Password?</h2>
+        </div>
         <p>You can reset your password here.</p>
         <div className="panel-body">
           <form
@@ -31,17 +31,19 @@ const ResetPassword = () => {
               />
             </div>
 
-            <div className="form-group mt-2">
-              <button type="button" className="btn btn-primary btn-lg">
-                Reset Password
-              </button>
-              <p className="small fw-bold mt-2 pt-1 mb-0">
-                Remember your password ?{" "}
-                <Link to="/login" className="link-danger">
-                  Login
-                </Link>
-              </p>
+            <div className="form-group mt-4">
+              <div className="d-grid gap-2">
+                <button type="button" className="btn btn-success btn-md">
+                  Reset Password
+                </button>
+              </div>
             </div>
+            <p className="small fw-bold mt-4 pt-1 mb-0">
+              Remember your password ?{" "}
+              <Link to="/login" className="link-danger">
+                Login
+              </Link>
+            </p>
           </form>
         </div>
       </div>

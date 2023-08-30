@@ -29,8 +29,6 @@ function RegisterPage() {
   var nav = useNavigate();
 
   const onSubmit = async (data) => {
-    // const pwmatch = data.password === data.repeatpw;
-
     const credentials = {
       first_name: data.first_name,
       last_name: data.last_name,

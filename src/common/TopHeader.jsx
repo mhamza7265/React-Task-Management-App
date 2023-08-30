@@ -22,7 +22,15 @@ function TopHeader() {
     <nav className="navbar navbar-expand-lg  fixed-top-header border-bottom">
       <div className="container-fluid">
         {/* <h2 className="m-0 page-heading">TASK MANAGEMENT</h2> */}
-        <img src={logo} />
+        <div className="row align-items-center">
+          <img src={logo} />
+          <div
+            className="collapse navbar-collapse bell-anchor"
+            id="navbarSupportedContent"
+          >
+            <h2 className="top-heading">TASK MANAGEMENT</h2>
+          </div>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -36,42 +44,6 @@ function TopHeader() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <div className="navbar-nav ms-auto mt-2 mt-lg-0">
-            <div
-              className="collapse navbar-collapse bell-anchor"
-              id="navbarSupportedContent"
-            >
-              {/* <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
-                <li className="nav-item dropdown notifications">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    id="navbarDropdown"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i className="fa fa-bell"></i>
-                  </a>
-                  <div
-                    className="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <a className="dropdown-item" href="#!">
-                      Action
-                    </a>
-                    <a className="dropdown-item" href="#!">
-                      Another action
-                    </a>
-                    <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="#!">
-                      Something else here
-                    </a>
-                  </div>
-                </li>
-              </ul> */}
-              <h2 className="top-heading">TASK MANAGEMENT</h2>
-            </div>
             <div className="dropdown fixed-bottom-dropdown">
               <a
                 href="#"
@@ -80,13 +52,14 @@ function TopHeader() {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <img
+                {/* <img
                   src="https://via.placeholder.com/50"
                   alt=""
                   width="32"
                   height="32"
                   className="rounded-circle me-2"
-                />
+                /> */}
+                <i className="fa-solid fa-circle-chevron-down"></i>
                 <span>{loggedinuser.username}</span>
               </a>
               <ul

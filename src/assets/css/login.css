@@ -26,6 +26,24 @@
 
 .reset-password-section {
   background-color: #fff;
-  padding: 15px 5%;
+  padding: 40px 5%;
   border-radius: var(--border-radius);
+}
+
+.reset-password-section h2 {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.reset-password-section p {
+  color: #87949a;
+}
+
+.err-text {
+  font-size: 12px;
+  color: #87949a;
+}
+
+.fa-4x {
+  font-size: 2em !important;
 }

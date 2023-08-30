@@ -46,7 +46,6 @@ function Header() {
     dispatch(AddDate(duedate));
   };
 
-  console.log(location.pathname);
   return (
     <nav className="navbar navbar-expand-lg  fixed-top border-bottom">
       <div className="container-fluid">

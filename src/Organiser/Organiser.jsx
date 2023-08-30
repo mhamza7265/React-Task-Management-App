@@ -21,14 +21,12 @@ const Organiser = () => {
   const newtasksdatefilterres = newtasks.filter(
     (item) => item.duedate == datetofilter
   );
-  console.log(newtasksfilterres);
   const iptasksfilterres = inprogresstasks.filter(
     (item) => item.priority == tasksfilter
   );
   const iptasksdatefilterres = inprogresstasks.filter(
     (item) => item.duedate == datetofilter
   );
-  console.log(iptasksfilterres);
   const completedtasksfilterres = completedtasks.filter(
     (item) => item.priority == tasksfilter
   );

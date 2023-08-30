@@ -184,7 +184,7 @@ const Loginform = () => {
       </div>
 
       <div className="text-center text-lg-start mt-4 pt-2">
-        <button className="btn btn-primary btn-lg">Login</button>
+        <button className="btn btn-success btn-md">Login</button>
         <p className="small fw-bold mt-2 pt-1 mb-0">
           Don't have an account?
           <Link to="/register" className="link-danger">
@@ -193,46 +193,6 @@ const Loginform = () => {
         </p>
       </div>
     </form>
-    // <form onSubmit={handleSubmit(onSubmit)}>
-    //   <div className="inpt-div">
-    //     <input
-    //       {...register("username", {
-    //         required: "this field is required",
-    //         minLength: {
-    //           value: 5,
-    //           message: "Minimum length is 5",
-    //         },
-    //       })}
-    //       type="text"
-    //       data="username"
-    //       placeholder="Email"
-    //       onChange={handleChange}
-    //     />
-    //     <p>{errors.username?.message}</p>
-    //     {userNameError && <p className="text-danger">Username is wrong</p>}
-    //   </div>
-    //   <div className="inpt-div">
-    //     <input
-    //       {...register("password", { required: "Password is required" })}
-    //       type="password"
-    //       data="password"
-    //       placeholder="Password"
-    //       onChange={handleChange}
-    //     />
-    //     <p>{errors.password?.message}</p>
-    //     {passError && <p className="text-danger">Password is wrong</p>}
-    //     <div className="text-end">
-    //       <div className="w-100">
-    //         <Link className="float-end d-block me-4" to="update">
-    //           Update Password
-    //         </Link>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div className="w-100 mt-5">
-    //     <button className="">login</button>
-    //   </div>
-    // </form>
   );
 };
 

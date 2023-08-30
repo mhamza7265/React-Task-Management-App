@@ -25,14 +25,14 @@ const Container = () => {
   return (
     <div className="col-lg-12">
       <div className="container-fluid mt-5">
-        <div className="d-flex justify-content-center inner flex-wrap">
+        <div className="d-flex justify-content-center inner flex-wrap task-container">
           {displaytype == "pending" ? (
             <div className="w-100">
               <div>
-                <h4>Pending Tasks</h4>
+                <h6>Pending Tasks</h6>
               </div>
               <table className="table table-striped">
-                <thead className="table-dark">
+                <thead className="task-table-head">
                   <tr>
                     <th scope="col">Sr No.</th>
                     <th scope="col">Title</th>
@@ -61,10 +61,10 @@ const Container = () => {
           ) : displaytype == "complete" ? (
             <div className="w-100">
               <div>
-                <h4>Completed Tasks</h4>
+                <h6>Completed Tasks</h6>
               </div>
               <table className="table table-striped">
-                <thead className="table-dark">
+                <thead className="task-table-head">
                   <tr>
                     <th scope="col">Sr No.</th>
                     <th scope="col">Title</th>

@@ -67,8 +67,8 @@ const ChangePassword = () => {
       <div className="my-3 p-3 bg-body rounded shadow-sm">
         <h6 className="border-bottom pb-2 mb-0 mb-3">Change Password</h6>
 
-        <div className="row">
-          <div className="col-4">
+        <div className="">
+          <div className="col-4 d-none">
             <p>Your Password must contain.</p>
             <p>
               {" "}
@@ -125,7 +125,7 @@ const ChangePassword = () => {
               mixed case characters.
             </p>
           </div>
-          <div className="col-8">
+          <div className="col-lg-12">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
@@ -149,11 +149,11 @@ const ChangePassword = () => {
                 {currErr && <p className="text-danger">Wrong Password</p>}
               </div>
 
-              <div className="mb-3">
+              <div className="">
                 <label htmlFor="exampleInputEmail1" className="form-label">
                   New Password
                 </label>
-                <div className="input-group mb-3">
+                <div className="input-group">
                   <input
                     {...register("newpassword", {
                       required: "this field is required",
@@ -172,7 +172,25 @@ const ChangePassword = () => {
                     <i className="fa fa-key"></i>
                   </span>
                 </div>
-                <p className="text-danger">{errors.newpassword?.message}</p>
+                <p className="text-danger m-0">{errors.newpassword?.message}</p>
+              </div>
+              <div className="col-lg-12 mt-0">
+                <p className="err-text text-center">
+                  {" "}
+                  <i
+                    className={`${
+                      newPw.length >= 8 &&
+                      hasNum.test(newPw) &&
+                      format.test(newPw) &&
+                      hasletter.test(newPw)
+                        ? "fa fa-check text-success"
+                        : newPw.length >= 1 || newPw.length == 0
+                        ? "fa-solid fa-xmark text-danger"
+                        : null
+                    } `}
+                  ></i>{" "}
+                  At least 8 characters a number and special character.
+                </p>
               </div>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
@@ -201,10 +219,7 @@ const ChangePassword = () => {
                   {errors.confirmnewpassword?.message}
                 </p>
               </div>
-              <hr />
-              <button className="btn btn-success btn-sm float-end">
-                Submit
-              </button>
+              <button className="btn btn-success btn-sm">Submit</button>
             </form>
           </div>
         </div>

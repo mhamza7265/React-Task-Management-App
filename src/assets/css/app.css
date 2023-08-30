@@ -41,13 +41,17 @@ ul ul a {
   background: #6d7fcc;
 }
 
+.w-max-content {
+  width: max-content;
+}
+
 /* The sidebar menu */
 .sidenav {
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 250px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
-  top: 89px; /* Stay at the top */
+  top: 78px; /* Stay at the top */
   left: 0;
   background-color: #fbfcfd;
   color: var(--sidenav-color);
@@ -91,7 +95,7 @@ ul ul a {
 
 .fixed-top {
   position: fixed;
-  top: 89px;
+  top: 78px;
   right: 0;
   left: 250px;
   z-index: 5;
@@ -115,8 +119,19 @@ ul ul a {
 }
 
 .top-heading {
-  font-size: 24px;
+  font-size: 18px;
   color: #e3ecec;
+  margin: 0;
+}
+
+.task-bshadow {
+  box-shadow: 0px 0px 4px -1px #b3b1b3 !important;
+}
+
+.fa-circle-chevron-down {
+  color: #e3ecec;
+  font-size: 18px;
+  margin-right: 5px;
 }
 
 .btn-sm-date {
@@ -152,7 +167,11 @@ ul ul a {
 }
 
 .dash-card-body * {
-  color: #67757c !important;
+  color: #bcc3d3 !important;
+}
+
+.dash-card-body .dark {
+  color: #87949a !important;
 }
 
 .dash-card-body p {
@@ -172,6 +191,30 @@ ul ul a {
 .task-card-border {
   border: 1px solid #dee2e6;
   background-color: #fbfcfd !important;
+  box-shadow: 0px 0px 4px -1px #b3b1b3 !important;
+}
+
+.task-card-border .card-body {
+  padding: 10px !important;
+}
+
+.task-card-border .card-body .card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #67757c !important;
+}
+
+.badge {
+  padding: 0.1em 0.65em !important;
+}
+.dash-card-body .card-subtitle.bg-success {
+  background-color: rgba(10 221 123 / 81%) !important;
+}
+
+.dash-card-body .card-subtitle.bg-danger {
+  background-color: #fff4e4 !important;
+  border-color: #fff4e4 !important;
+  color: #ff9041 !important;
 }
 
 @media screen and (max-width: 770px) {
@@ -273,7 +316,7 @@ h2 {
 .bell-anchor {
   padding: 10px 25px;
   margin: 0 25px;
-  border-right: 1px solid #e3ecec;
+  border-left: 1px solid #e3ecec;
 }
 
 .bell-anchor i {
@@ -417,6 +460,13 @@ ul ul a {
   background-color: transparent !important;
 }
 
+.recharts-cartesian-axis-ticks {
+  display: block !important;
+}
+
+text[orientation="left"] {
+  display: none !important;
+}
 .sidenav a:hover {
   font-family: var(--sidenav-active-font);
 }
@@ -424,8 +474,12 @@ ul ul a {
 .fixed-bottom-dropdown {
   font-weight: normal !important;
   margin-bottom: 0px;
-  width: 200px;
+  width: max-content;
   padding: 13px 5px;
+}
+
+.recharts-wrapper {
+  margin: 50px auto 0 auto;
 }
 
 .fixed-bottom-dropdown span {
@@ -540,6 +594,7 @@ button {
 
 .bg-body h6 {
   color: #4b6262;
+  font-weight: 700;
 }
 
 .text-default {
@@ -551,9 +606,30 @@ button {
 }
 
 .m-t-85 {
-  margin-top: 85px;
+  margin-top: 40px;
 }
 
+.task-table-head {
+  background-color: #4b6262;
+}
+
+.task-table-head th {
+  color: #e3ecec;
+}
+
+.task-container h6 {
+  color: #4b6262;
+  font-weight: 700;
+}
+
+.list-group .active,
+.list-group a:hover {
+  color: cadetblue !important;
+}
+
+.react-datepicker-popper {
+  z-index: 9999;
+}
 /* modals */
 
 /*******************************

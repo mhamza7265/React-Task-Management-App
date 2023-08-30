@@ -44,7 +44,7 @@ function AddNewTask() {
   };
 
   return (
-    <div className="m-t-85 p-3 bg-body rounded shadow-sm">
+    <div className="m-t-85 p-3 bg-body rounded shadow-sm task-bshadow">
       <h6 className="border-bottom pb-2 mb-0 mb-3">Add New Task</h6>
       <form onSubmit={handleSubmit(onSubmitt)}>
         <div className="">
@@ -112,10 +112,10 @@ function AddNewTask() {
             <p className="text-danger">{errors.duedate?.message}</p>
           </div>
         </div>
-        <Link className="btn btn-sm btn-danger mt-3" to="/">
+        <Link className="btn btn-sm btn-danger" to="/">
           Cancel
         </Link>
-        <button type="submit" className="btn btn-success float-end">
+        <button type="submit" className="btn btn-sm btn-success float-end">
           Submit
         </button>
       </form>
