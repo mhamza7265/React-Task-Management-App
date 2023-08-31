@@ -16,6 +16,7 @@ import EditTasks from "./components/EditTask";
 import Users from "./components/Users";
 import RegisterAuthLayout from "./hoc/RegisterAuthLayout";
 import Container from "./Organiser/Container";
+import OtpAuthLayout from "./hoc/OtpAuthLayout";
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
           path="/change-password"
           element={<ChangePasswordAuthLayout />}
         />
+
+        <Route path="/otp" element={<OtpAuthLayout />} />
 
         <Route exact path="/register" element={<RegisterAuthLayout />} />
 

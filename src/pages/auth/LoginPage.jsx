@@ -9,14 +9,9 @@ import { BarLoader } from "react-spinners";
 import axios from "axios";
 
 const Loginform = () => {
-  // const [inputs, setInputs] = useState({});
-  // const [passError, setPassError] = useState(false);
   let [loading, setLoading] = useState(false);
-  // const [userNameError, setUserNameError] = useState(false);
 
   const toast = useToast();
-
-  // const usersdata = useSelector((state) => state.userdata.users);
 
   const dispatch = useDispatch();
 
@@ -40,15 +35,12 @@ const Loginform = () => {
   var nav = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
     const obj = { ...data, device_token: "gvhvfcfcxasdkjbhasvyhuvchvuhvbjbj" };
-    console.log(obj);
     setLoading(true);
     axios
       .post("https://partytonight.bitwork.tech/public/api/login", obj)
       .then((response) => {
         setLoading(false);
-        console.log(response.data);
         if (response.data.code == 1005) {
           toast({
             title: response.data.message,
@@ -89,31 +81,11 @@ const Loginform = () => {
             status: "error",
           });
       });
-
-    // const userData = usersdata.find((user) => user.email === inputs.email);
-    // console.log(userData);
-    // if (userData && userData.password === inputs.password) {
-    //   dispatch(isLoggedIn());
-    //   dispatch(
-    //     loggedInUser({
-    //       username: userData.firstname + " " + userData.lastname,
-    //       userkey: userData.userkey,
-    //     })
-    //   );
-    //   nav("/");
-    // } else if (userData && userData.password !== inputs.password) {
-    //   dispatch(isLoggedOut());
-    //   setPassError(true);
-    // } else {
-    //   dispatch(isLoggedOut());
-    //   setUserNameError(true);
-    // }
-    // userData.password === inputs.password && nav("/");
   };
 
   return (
     <form
-      className="login-form position-relative"
+      className="login-form position-relative task-bshadow"
       onSubmit={handleSubmit(onSubmit)}
     >
       <BarLoader
@@ -146,7 +118,7 @@ const Loginform = () => {
           id="form3Example3"
           className="form-control form-control-lg"
         />
-        <p>{errors.email?.message}</p>
+        <p className="text-danger">{errors.email?.message}</p>
       </div>
 
       {/* <!-- Password input --> */}

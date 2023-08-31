@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { AddTaskComp, RemoveTaskComp } from "../reducers/CompletedTaskReducer";
 
 const Organiser = () => {
+  const loggedinuser = useSelector((state) => state.loggedin.user.userkey);
   const newtasks = useSelector((state) => state.newtask.data);
   const inprogresstasks = useSelector((state) => state.inprogresstask.data);
   const completedtasks = useSelector((state) => state.completedtask.data);
@@ -15,22 +16,32 @@ const Organiser = () => {
   const datetofilter = useSelector((state) => state.datefilter.value);
   const dispatch = useDispatch();
 
-  const newtasksfilterres = newtasks.filter(
+  const newtasksbyuser = newtasks.filter(
+    (item) => item.userkey == loggedinuser
+  );
+  const iptasksbyuser = inprogresstasks.filter(
+    (item) => item.userkey == loggedinuser
+  );
+  const completedtasksbyuser = completedtasks.filter(
+    (item) => item.userkey == loggedinuser
+  );
+
+  const newtasksfilterres = newtasksbyuser.filter(
     (item) => item.priority == tasksfilter
   );
-  const newtasksdatefilterres = newtasks.filter(
+  const newtasksdatefilterres = newtasksbyuser.filter(
     (item) => item.duedate == datetofilter
   );
-  const iptasksfilterres = inprogresstasks.filter(
+  const iptasksfilterres = iptasksbyuser.filter(
     (item) => item.priority == tasksfilter
   );
-  const iptasksdatefilterres = inprogresstasks.filter(
+  const iptasksdatefilterres = iptasksbyuser.filter(
     (item) => item.duedate == datetofilter
   );
-  const completedtasksfilterres = completedtasks.filter(
+  const completedtasksfilterres = completedtasksbyuser.filter(
     (item) => item.priority == tasksfilter
   );
-  const completedtasksdatefilterres = completedtasks.filter(
+  const completedtasksdatefilterres = completedtasksbyuser.filter(
     (item) => item.duedate == datetofilter
   );
 
@@ -85,7 +96,7 @@ const Organiser = () => {
                 title={"To-Do"}
                 tasks={
                   tasksfilter == "all"
-                    ? newtasks
+                    ? newtasksbyuser
                     : tasksfilter == "date"
                     ? newtasksdatefilterres
                     : newtasksfilterres
@@ -96,7 +107,7 @@ const Organiser = () => {
                 title={"In-Progress"}
                 tasks={
                   tasksfilter == "all"
-                    ? inprogresstasks
+                    ? iptasksbyuser
                     : tasksfilter == "date"
                     ? iptasksdatefilterres
                     : iptasksfilterres
@@ -107,7 +118,7 @@ const Organiser = () => {
                 title={"Completed"}
                 tasks={
                   tasksfilter == "all"
-                    ? completedtasks
+                    ? completedtasksbyuser
                     : tasksfilter == "date"
                     ? completedtasksdatefilterres
                     : completedtasksfilterres

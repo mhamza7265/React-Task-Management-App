@@ -29,16 +29,6 @@ const UserProfileLayout = () => {
                   </div>
                   <div className="profile-usertitle-job"></div>
                 </div>
-                {/* <!-- END SIDEBAR USER TITLE -->
-                            <!-- SIDEBAR BUTTONS --> */}
-                {/* <div className="profile-userbuttons">
-                  <button type="button" className="btn btn-success btn-sm">
-                    Follow
-                  </button>
-                  <button type="button" className="btn btn-danger btn-sm">
-                    Message
-                  </button>
-                </div> */}
                 <hr />
                 <div>
                   <div className="bd-example">
@@ -53,7 +43,7 @@ const UserProfileLayout = () => {
                       >
                         Personal Info
                       </NavLink>
-                      <NavLink
+                      {/* <NavLink
                         to="/change-password"
                         className={({ isActive }) =>
                           `list-group-item list-group-item-action ${
@@ -62,16 +52,6 @@ const UserProfileLayout = () => {
                         }
                       >
                         Change Password
-                      </NavLink>
-                      {/* <NavLink
-                        to="preferences"
-                        className={({ isActive }) =>
-                          `list-group-item list-group-item-action ${
-                            isActive ? "active" : ""
-                          }`
-                        }
-                      >
-                        Preferences
                       </NavLink> */}
                     </div>
                   </div>

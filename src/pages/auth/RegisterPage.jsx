@@ -1,17 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
-// import { AddUsers } from "../../reducers/UsersDataReducer";
+import { BarLoader } from "react-spinners";
+import { useState } from "react";
 
 function RegisterPage() {
-  const [error, setError] = useState(false);
-  const [userError, setUserError] = useState(false);
-  const [pwError, setPwError] = useState(false);
-  const usersdata = useSelector((state) => state.userdata.users);
-  const dispatch = useDispatch();
+  let [loading, setLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -22,11 +17,16 @@ function RegisterPage() {
     watch,
   } = useForm();
 
-  const handleChange = () => {
-    setError(false);
+  const override = {
+    display: "block",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    margin: "0 auto",
+    borderColor: "red",
+    width: "100%",
+    backgroundColor: "#4b6262",
   };
-
-  var nav = useNavigate();
 
   const onSubmit = async (data) => {
     const credentials = {
@@ -37,9 +37,11 @@ function RegisterPage() {
       password: data.password,
     };
 
+    setLoading(true);
     axios
       .post("https://partytonight.bitwork.tech/public/api/signup", credentials)
       .then((response) => {
+        setLoading(false);
         response.data.code == 1004
           ? toast({
               title: response.data.message,
@@ -70,7 +72,15 @@ function RegisterPage() {
 
   return (
     <>
-      <div className="my-3 p-3 bg-body rounded shadow-sm">
+      <div className="my-3 p-3 bg-body rounded shadow-sm task-bshadow position-relative">
+        <BarLoader
+          color={"#ffffff"}
+          loading={loading}
+          cssOverride={override}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
         <h6 className="border-bottom pb-2 mb-0 mb-3">Register</h6>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row">
@@ -139,7 +149,6 @@ function RegisterPage() {
                     },
                   })}
                   data="email"
-                  onChange={handleChange}
                   className="form-control"
                   placeholder="Email Address"
                 />
@@ -165,12 +174,12 @@ function RegisterPage() {
                       value: 5,
                       message: "Minimum length is 5",
                     },
-                    pattern: {
-                      value:
-                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$/,
-                      message:
-                        "Must include lowercase, uppercase, number and special character",
-                    },
+                    // pattern: {
+                    //   value:
+                    //     "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$",
+                    //   message:
+                    //     "Must include lowercase, uppercase, number and special character",
+                    // },
                   })}
                   type="password"
                   data="password"
