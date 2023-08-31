@@ -60,6 +60,7 @@ function RegisterPage() {
         setTimeout(() => navigate("/login"), 3000);
       })
       .catch((error) => {
+        setLoading(false);
         toast({
           title: error.message,
           position: "top",

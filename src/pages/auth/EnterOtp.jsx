@@ -38,6 +38,7 @@ function EnterOtp() {
       .then((response) => {
         setLoading(false);
         if (response.data.code == 1020) {
+          setLoading(false);
           toast({
             title: response.data.message,
             position: "top",
@@ -47,6 +48,7 @@ function EnterOtp() {
           });
           setTimeout(() => nav("/change-password"), 1000);
         } else if (response.data.code == 2019) {
+          setLoading(false);
           toast({
             title: response.data.message,
             position: "top",
@@ -55,6 +57,7 @@ function EnterOtp() {
             status: "error",
           });
         } else {
+          setLoading(false);
           toast({
             title: response.data.message,
             position: "top",
@@ -65,6 +68,7 @@ function EnterOtp() {
         }
       })
       .catch((error) => {
+        setLoading(false);
         toast({
           title: error.message,
           position: "top",

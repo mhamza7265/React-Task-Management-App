@@ -42,6 +42,7 @@ const Loginform = () => {
       .then((response) => {
         setLoading(false);
         if (response.data.code == 1005) {
+          setLoading(false);
           toast({
             title: response.data.message,
             position: "top",
@@ -50,6 +51,7 @@ const Loginform = () => {
             status: "error",
           });
         } else if (response.data.status == true) {
+          setLoading(false);
           toast({
             title: response.data.message,
             position: "top",
@@ -72,6 +74,7 @@ const Loginform = () => {
         }
       })
       .catch((error) => {
+        setLoading(false);
         error.message == "Request failed with status code 401" &&
           toast({
             title: "Wrong password.",

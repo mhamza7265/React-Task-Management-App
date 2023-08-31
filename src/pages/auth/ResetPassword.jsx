@@ -38,6 +38,7 @@ const ResetPassword = () => {
       .then((response) => {
         setLoading(false);
         if (response.data.code == 1018) {
+          setLoading(false);
           toast({
             title: response.data.message,
             position: "top",
@@ -48,6 +49,7 @@ const ResetPassword = () => {
           dispatch(loggedInUser({ username: "blank", userkey: data.email }));
           setTimeout(() => nav("/otp"), 1000);
         } else if (response.data.code == 2014) {
+          setLoading(false);
           toast({
             title: response.data.message,
             position: "top",
@@ -58,6 +60,7 @@ const ResetPassword = () => {
         }
       })
       .catch((error) => {
+        setLoading(false);
         toast({
           title: error.message,
           position: "top",

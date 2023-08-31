@@ -51,6 +51,7 @@ const ChangePassword = () => {
       .then((response) => {
         setLoading(false);
         if (response.data.status == true) {
+          setLoading(false);
           toast({
             title: response.data.message,
             position: "top",
@@ -62,6 +63,7 @@ const ChangePassword = () => {
             nav("/login");
           }, 1000);
         } else {
+          setLoading(false);
           toast({
             title: response.data.message,
             position: "top",
@@ -72,6 +74,7 @@ const ChangePassword = () => {
         }
       })
       .catch((error) => {
+        setLoading(false);
         toast({
           title: error.message,
           position: "top",
