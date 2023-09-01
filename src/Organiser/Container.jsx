@@ -44,19 +44,23 @@ const Container = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {pending.map((item, key) => (
-                    <TodoTable
-                      index={key}
-                      id={item.id}
-                      title={item.title}
-                      desc={item.desc}
-                      duedate={item.duedate}
-                      priority={item.priority}
-                      Status={item.Status}
-                      createdon={item.createdon}
-                      key={Math.floor(Math.random() * 1000)}
-                    />
-                  ))}
+                  {pending != "" ? (
+                    pending.map((item, key) => (
+                      <TodoTable
+                        index={key}
+                        id={item.id}
+                        title={item.title}
+                        desc={item.desc}
+                        duedate={item.duedate}
+                        priority={item.priority}
+                        Status={item.Status}
+                        createdon={item.createdon}
+                        key={Math.floor(Math.random() * 1000)}
+                      />
+                    ))
+                  ) : (
+                    <p className="w-100 text-center">No task created!</p>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -76,19 +80,23 @@ const Container = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {completed.map((item, key) => (
-                    <TodoTable
-                      index={key}
-                      id={item.id}
-                      title={item.title}
-                      desc={item.desc}
-                      duedate={item.duedate}
-                      priority={item.priority}
-                      Status={item.Status}
-                      createdon={item.createdon}
-                      key={Math.floor(Math.random() * 1000)}
-                    />
-                  ))}
+                  {completed != "" ? (
+                    completed.map((item, key) => (
+                      <TodoTable
+                        index={key}
+                        id={item.id}
+                        title={item.title}
+                        desc={item.desc}
+                        duedate={item.duedate}
+                        priority={item.priority}
+                        Status={item.Status}
+                        createdon={item.createdon}
+                        key={Math.floor(Math.random() * 1000)}
+                      />
+                    ))
+                  ) : (
+                    <p className="w-100 text-center">No task created!</p>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -108,19 +116,23 @@ const Container = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {inprogress.map((item, key) => (
-                    <TodoTable
-                      index={key}
-                      id={item.id}
-                      title={item.title}
-                      desc={item.desc}
-                      duedate={item.duedate}
-                      priority={item.priority}
-                      Status={item.Status}
-                      createdon={item.createdon}
-                      key={Math.floor(Math.random() * 1000)}
-                    />
-                  ))}
+                  {inprogress != "" ? (
+                    inprogress.map((item, key) => (
+                      <TodoTable
+                        index={key}
+                        id={item.id}
+                        title={item.title}
+                        desc={item.desc}
+                        duedate={item.duedate}
+                        priority={item.priority}
+                        Status={item.Status}
+                        createdon={item.createdon}
+                        key={Math.floor(Math.random() * 1000)}
+                      />
+                    ))
+                  ) : (
+                    <p className="w-100 text-center">No task created!</p>
+                  )}
                 </tbody>
               </table>
             </div>

@@ -467,9 +467,9 @@ ul ul a {
 text[orientation="left"] {
   display: none !important;
 }
-.sidenav a:hover {
+/* .sidenav a:hover {
   font-family: var(--sidenav-active-font);
-}
+} */
 
 .fixed-bottom-dropdown {
   font-weight: normal !important;
