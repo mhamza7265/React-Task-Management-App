@@ -17,12 +17,21 @@ import Users from "./components/Users";
 import RegisterAuthLayout from "./hoc/RegisterAuthLayout";
 import Container from "./Organiser/Container";
 import OtpAuthLayout from "./hoc/OtpAuthLayout";
+import HaveAuth from "./components/HaveAuth";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/login" element={<LoginAuthLayout />} />
+        <Route
+          exact
+          path="/login"
+          element={
+            <HaveAuth>
+              <LoginAuthLayout />
+            </HaveAuth>
+          }
+        />
         <Route
           exact
           path="/reset-password"
