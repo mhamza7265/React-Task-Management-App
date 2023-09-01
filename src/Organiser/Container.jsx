@@ -20,7 +20,9 @@ const Container = () => {
 
   const completed = [...userbykeycomp];
 
-  const pending = [...usersbykeynew, ...userbykeyip];
+  const inprogress = [...userbykeyip];
+
+  const pending = [...usersbykeynew];
 
   return (
     <div className="col-lg-12">
@@ -90,7 +92,39 @@ const Container = () => {
                 </tbody>
               </table>
             </div>
-          ) : null}
+          ) : (
+            <div className="w-100">
+              <div>
+                <h6>In-progress Tasks</h6>
+              </div>
+              <table className="table table-striped">
+                <thead className="task-table-head">
+                  <tr>
+                    <th scope="col">Sr No.</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Due Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {inprogress.map((item, key) => (
+                    <TodoTable
+                      index={key}
+                      id={item.id}
+                      title={item.title}
+                      desc={item.desc}
+                      duedate={item.duedate}
+                      priority={item.priority}
+                      Status={item.Status}
+                      createdon={item.createdon}
+                      key={Math.floor(Math.random() * 1000)}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
     </div>

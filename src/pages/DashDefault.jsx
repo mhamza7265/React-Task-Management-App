@@ -22,7 +22,9 @@ const DashDefault = () => {
 
   const completed = [...userbykeycomp];
 
-  const pending = [...usersbykeynew, ...userbykeyip];
+  const inprogress = [...userbykeyip];
+
+  const pending = [...usersbykeynew];
 
   const all = [...userbykeycomp, ...usersbykeynew, ...userbykeyip];
 
@@ -35,6 +37,9 @@ const DashDefault = () => {
       navigate("taskstat");
     } else if (e.target.getAttribute("value") == "pending") {
       dispatch(EditDisplayType("pending"));
+      navigate("taskstat");
+    } else if (e.target.getAttribute("value") == "inprogress") {
+      dispatch(EditDisplayType("inprogress"));
       navigate("taskstat");
     }
   };
@@ -78,6 +83,29 @@ const DashDefault = () => {
             <a
               className="card-footer text-white clearfix small z-1 dash-card-footer"
               value="complete"
+              href="javascript:void(0)"
+              onClick={handleClick}
+            >
+              View Details
+              <span className="float-right">
+                <i className="fa fa-angle-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div className="col-xl-3 col-sm-6 mb-3 me-auto">
+          <div className="card text-white bg-secondary o-hidden h-100 dash-card">
+            <div className="card-body">
+              <div className="card-body-icon">
+                <i className="fa-solid fa-bars-progress"></i>
+              </div>
+              <div className="mr-5 card-body-text">
+                {inprogress.length} In-progress Tasks
+              </div>
+            </div>
+            <a
+              className="card-footer text-white clearfix small z-1 dash-card-footer"
+              value="inprogress"
               href="javascript:void(0)"
               onClick={handleClick}
             >

@@ -17,6 +17,8 @@ const Sidebar = () => {
       dispatch(EditDisplayType("complete"));
     } else if (e.target.getAttribute("value") == "pending") {
       dispatch(EditDisplayType("pending"));
+    } else if (e.target.getAttribute("value") == "inprogress") {
+      dispatch(EditDisplayType("inprogress"));
     }
 
     navigate("taskstat");
@@ -76,6 +78,17 @@ const Sidebar = () => {
                   onClick={handleDisplayClick}
                 >
                   <i className="fa-solid fa-list-check"></i> Completed Tasks
+                </a>
+              </li>
+              <li className="mb-1">
+                <a
+                  className=""
+                  href="javascript:void(0)"
+                  value="inprogress"
+                  onClick={handleDisplayClick}
+                >
+                  <i className="fa-solid fa-bars-progress"></i> In-progress
+                  Tasks
                 </a>
               </li>
               <li className="mb-1">
